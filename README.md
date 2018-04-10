@@ -9,7 +9,8 @@ Windows 64-bit: https://github.com/agameraaron/shuffler/releases/download/v0.2/s
 
 OSX 32-bit & 64-bit: https://github.com/agameraaron/shuffler/releases/download/v0.2/shuffler_mac_0_2.zip
 
-![alt text](https://raw.githubusercontent.com/agameraaron/shuffler/master/demo%200.gif)
+![alt text](https://raw.githubusercontent.com/agameraaron/shuffler/master/demo1.gif)
+![alt text](https://raw.githubusercontent.com/agameraaron/shuffler/master/demo2.gif)
 
 # Description
 Much like how one could determine an answer by shuffling cards, throwing dice, shaking a magic 8-ball or spinning a prize wheel, this will give you a seemingly random response out of the answers you list. I created this with the intent to broadcast it via streaming and to leave each day's chosen task at the whimsey of dynamic computer numbers. 
