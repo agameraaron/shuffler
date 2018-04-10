@@ -1,9 +1,6 @@
 # Shuffler
 A tool for shuffling around custom answers.
 
-![alt text](https://raw.githubusercontent.com/agameraaron/shuffler/master/demo%200.gif)
-
-
 # Downloads
 
 Linux 64-bit: https://github.com/agameraaron/shuffler/releases/download/v0.2/shuffler_linux_0_2.7z
@@ -11,6 +8,8 @@ Linux 64-bit: https://github.com/agameraaron/shuffler/releases/download/v0.2/shu
 Windows 64-bit: https://github.com/agameraaron/shuffler/releases/download/v0.2/shuffler_windows_0_2.zip
 
 OSX 32-bit & 64-bit: https://github.com/agameraaron/shuffler/releases/download/v0.2/shuffler_mac_0_2.zip
+
+![alt text](https://raw.githubusercontent.com/agameraaron/shuffler/master/demo%200.gif)
 
 # Description
 Much like how one could determine an answer by shuffling cards, throwing dice, shaking a magic 8-ball or spinning a prize wheel, this will give you a seemingly random response out of the answers you list. I created this with the intent to broadcast it via streaming and to leave each day's chosen task at the whimsey of dynamic computer numbers. 
