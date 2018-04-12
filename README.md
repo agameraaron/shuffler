@@ -1,10 +1,11 @@
 # Shuffler
 A tool for shuffling around custom answers.
 Can be paired with streaming applications like 'OBS'.
+Version 0.3
 
 ### Download Application:
 
-|[Linux 64-bit](https://github.com/agameraaron/shuffler/releases/download/v0.3/shuffler_0_3_linux64.7z)|[Linux 32-bit](https://github.com/agameraaron/shuffler/releases/download/v0.3/shuffler_0_3_linux32_0_3.7z)|[Windows 64-bit](https://github.com/agameraaron/shuffler/releases/download/v0.3/shuffler_0_3_windows64_0_3.zip)|[Windows 64-bit](https://github.com/agameraaron/shuffler/releases/download/v0.3/shuffler_0_3_windows32.zip)|[OSX](https://github.com/agameraaron/shuffler/releases/download/v0.3/shuffler_0_3_mac.zip)|
+|[Linux 64-bit](https://github.com/agameraaron/shuffler/releases/download/v0.3/shuffler_0_3_linux64.7z)|[Linux 32-bit](https://github.com/agameraaron/shuffler/releases/download/v0.3/shuffler_0_3_linux32_0_3.7z)|[Windows 64-bit](https://github.com/agameraaron/shuffler/releases/download/v0.3/shuffler_0_3_windows64_0_3.zip)|[Windows 32-bit](https://github.com/agameraaron/shuffler/releases/download/v0.3/shuffler_0_3_windows32.zip)|[OSX](https://github.com/agameraaron/shuffler/releases/download/v0.3/shuffler_0_3_mac.zip)|
 |:---:|:---:|:---:|:---:|:---:|
 
 ### Preview:
