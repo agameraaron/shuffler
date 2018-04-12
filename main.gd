@@ -1,6 +1,7 @@
 extends Node2D
 
-var version = "0.2"
+var version = "0.3"
+var version_name = "Improved"
 
 var program_state = "main"
 
@@ -18,7 +19,12 @@ var next_number = 0
 var display_number = 0
 var max_shuffle_number = 0
 
+var key_enter_held = false
+var key_delete_held = false
+
 var entries = ["these","are","tests","and","examples"]
+var selection_for_deletion = []
+var last_selected_entry_before_deletion = 0
 
 
 func _ready():
@@ -31,20 +37,70 @@ func _physics_process(delta):
 	#print(program_state)
 	if program_state == "main":
 		main_frame(delta)
-		#print("hi")
+		
 	elif program_state == "settings":
-		pass
+		update_background_color()
 	elif program_state == "list setup":
-		pass
+		if get_node("overlay frame").visible == false and get_node("new entry frame").visible == false:
+			keep_focus_on_list()
+			list_setup_keyboard_shortcuts()
 	elif program_state == "new entry":
 		new_entry()
 	
 	
 
 
+func list_setup_keyboard_shortcuts():
+	if Input.is_key_pressed(KEY_ENTER) or Input.is_key_pressed(KEY_KP_ENTER) or Input.is_key_pressed(KEY_PLUS):
+		if key_enter_held == false:
+			get_node("list setup frame/add entry").emit_signal("pressed")
+			key_enter_held = true
+			
+	else:
+		key_enter_held = false
+	
+	if Input.is_key_pressed(KEY_DELETE) or Input.is_key_pressed(KEY_BACKSPACE) or Input.is_key_pressed(KEY_MINUS):
+		if key_delete_held == false:
+			selection_for_deletion = get_node("list setup frame/entry list").get_selected_items()
+			last_selected_entry_before_deletion = selection_for_deletion[0]
+			print("to be deleted from list: "+str(selection_for_deletion))
+			var current_deletion = selection_for_deletion.size()-1
+			#Have a confirmation pop-up
+			# IMPORTANT! Work backwards from the bottom because the list shrinks as things are deleted!!
+			while current_deletion >= 0:
+				get_node("list setup frame/entry list").remove_item(selection_for_deletion[current_deletion])
+				print("removed: "+str(selection_for_deletion[current_deletion]))
+				current_deletion = current_deletion - 1
+				
+			key_delete_held = true
+			get_node("list setup frame/entry list").grab_focus()
+			get_node("list setup frame/entry list").select(last_selected_entry_before_deletion)
+	else:
+		key_delete_held = false
+		
+	
+
+func keep_focus_on_list():
+	if get_node("list setup frame/entry list").has_focus() == false:
+		get_node("list setup frame/entry list").grab_focus()
+		
+		if get_node("list setup frame/entry list").is_selected(0) == false:
+			get_node("list setup frame/entry list").select(0)
+	#has focus but after deletion does not highlight anything
+
+func update_background_color():
+	get_node("main frame").set_frame_color(get_node("settings frame/background color picker").get_pick_color())
+
 func new_entry():
-	if get_node("new entry frame/new entry input").has_focus() and (Input.is_key_pressed(KEY_ENTER) or Input.is_key_pressed(KEY_KP_ENTER)):
+	if Input.is_key_pressed(KEY_ENTER) == false and Input.is_key_pressed(KEY_KP_ENTER) == false:
+		key_enter_held = false
+	elif get_node("new entry frame/new entry input").has_focus() and (Input.is_key_pressed(KEY_ENTER) or Input.is_key_pressed(KEY_KP_ENTER)) and key_enter_held == false and get_node("new entry frame/new entry input").text != "":
+		key_enter_held = true
 		_on_confirm_button_pressed()
+		
+		get_node("list setup frame/entry list").grab_focus()
+		get_node("list setup frame/entry list").select(get_node("list setup frame/entry list").get_item_count()-1)
+		
 		
 		
 
