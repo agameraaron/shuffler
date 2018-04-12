@@ -1,6 +1,8 @@
 # Shuffler
 A tool for shuffling around custom answers.
+
 Can be paired with streaming applications like 'OBS'.
+
 Version 0.3
 
 ### Download Application:
