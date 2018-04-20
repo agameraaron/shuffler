@@ -1,7 +1,7 @@
 extends Node2D
 
-var version = "0.3"
-var version_name = "Improved"
+var version = "0.4"
+var version_name = "Chrono"
 
 var program_state = "main"
 
@@ -134,14 +134,17 @@ func main_frame(delta):
 			
 			if hold_time > 100:
 				hold_time = 100
-			print("hold time: "+str(hold_time))
+			print("raw hold time: "+str(hold_time))
+			var regulated_hold_time = (hold_time / 10) + 1 #should produce result between 1 & 11
+			print("hold time: "+str(hold_time)+" regulated: "+str(regulated_hold_time))
+			
 			#find the difference between the max power & hold time
-			var inversed_hold_time = 110 - hold_time
+			var inversed_hold_time = 30 - regulated_hold_time #100 - hold_time
 			
 			
 			#the greater the hold time the less resistance
 			resistance = (inversed_hold_time *0.005) - 0.08
-			if resistance <= 0.01:
+			if resistance < 0.01:
 				resistance = 0.01
 			
 			shuffle_state = "active"
@@ -154,7 +157,7 @@ func main_frame(delta):
 	
 	#Shuffling active loop
 	if shuffle_state == "active":
-		
+		print("accel: "+str(acceleration)+" res: "+str(resistance))
 		
 		if acceleration >= 0:
 			shuffle_state = "done"
@@ -165,13 +168,15 @@ func main_frame(delta):
 			acceleration += resistance
 			velocity += acceleration * delta
 			
-			#loops around :)
+			#loops around to keep it going until acceleration reaches zero
 			if velocity < 0:
 				velocity = 100
 			
+			
+			
 			#keep subtracting until there's only a remainder left
 			#that remainder will be the resulting number
-			next_number = (velocity - (max_shuffle_number-1))
+			next_number = (velocity - (max_shuffle_number-1)) #(velocity - (max_shuffle_number-1))
 			while next_number >= (max_shuffle_number-1):
 				#print("meep: "+str(next_number))
 				next_number = next_number - (max_shuffle_number-1)
@@ -237,7 +242,7 @@ func meter_direction():
 		if hold_reverse == true:
 			hold_time = hold_time - 5
 	
-	if hold_time > 100:
+	if hold_time >= 100:
 		hold_reverse = true
 	elif hold_time <= 0:
 		hold_reverse = false
