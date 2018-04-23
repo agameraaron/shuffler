@@ -3,11 +3,11 @@ A tool for shuffling around custom answers.
 
 Can be paired with streaming applications like 'OBS'.
 
-Version 0.3
+Version 0.4
 
 ### Download Application:
 
-|[Linux 64-bit](https://github.com/agameraaron/shuffler/releases/download/v0.3/shuffler_0_3_linux64.7z)|[Linux 32-bit](https://github.com/agameraaron/shuffler/releases/download/v0.3/shuffler_0_3_linux32_0_3.7z)|[Windows 64-bit](https://github.com/agameraaron/shuffler/releases/download/v0.3/shuffler_0_3_windows64_0_3.zip)|[Windows 32-bit](https://github.com/agameraaron/shuffler/releases/download/v0.3/shuffler_0_3_windows32.zip)|[OSX](https://github.com/agameraaron/shuffler/releases/download/v0.3/shuffler_0_3_mac.zip)|
+|[Linux 64-bit](https://github.com/agameraaron/shuffler/releases/download/v0.4/shuffler_0_4_linux64.7z)|[Linux 32-bit](https://github.com/agameraaron/shuffler/releases/download/v0.4/shuffler_0_4_linux32_0_3.7z)|[Windows 64-bit](https://github.com/agameraaron/shuffler/releases/download/v0.4/shuffler_0_4_windows64_0_3.zip)|[Windows 32-bit](https://github.com/agameraaron/shuffler/releases/download/v0.4/shuffler_0_4_windows32.zip)|[OSX](https://github.com/agameraaron/shuffler/releases/download/v0.4/shuffler_0_4_mac.zip)|
 |:---:|:---:|:---:|:---:|:---:|
 
 ### Preview:
@@ -36,7 +36,6 @@ Much like how one could determine an answer by shuffling cards, throwing dice, s
 
 ##### Low priority:
 - Fullscreen name entry screen.
-- Improve the wheel action to be more exciting.
 
 ### History:
 I wanted something to make decisions for me during streaming sessions. This is what I came up with. It works something like a digital roulette wheel including initial spin power and deceleration over time. Maybe a graphic representation of a wheel can be implemented in the future.
