@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://assets/Chunkfive.otf" type="DynamicFontData" id=2]
@@ -11,7 +11,9 @@
 [ext_resource path="res://assets/go back.png" type="Texture" id=9]
 [ext_resource path="res://assets/add.png" type="Texture" id=10]
 [ext_resource path="res://assets/remove.png" type="Texture" id=11]
-[ext_resource path="res://assets/about_godot.png" type="Texture" id=12]
+[ext_resource path="res://assets/save.png" type="Texture" id=12]
+[ext_resource path="res://assets/load.png" type="Texture" id=13]
+[ext_resource path="res://assets/about_godot.png" type="Texture" id=14]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -781,7 +783,6 @@ percent_visible = false
 
 [node name="list setup frame" type="ColorRect" parent="." index="2"]
 
-editor/display_folded = true
 visible = false
 anchor_left = 0.0
 anchor_top = 0.0
@@ -831,9 +832,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 143.0
+margin_left = 55.0
 margin_top = 329.0
-margin_right = 179.0
+margin_right = 91.0
 margin_bottom = 359.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -858,9 +859,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 180.0
+margin_left = 92.0
 margin_top = 329.0
-margin_right = 216.0
+margin_right = 128.0
 margin_bottom = 359.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -899,6 +900,60 @@ select_mode = 0
 allow_reselect = false
 icon_mode = 1
 fixed_icon_size = Vector2( 0, 0 )
+
+[node name="save list" type="Button" parent="list setup frame" index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 143.0
+margin_top = 329.0
+margin_right = 179.0
+margin_bottom = 359.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+hint_tooltip = "Save list to a file."
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+icon = ExtResource( 12 )
+flat = false
+align = 1
+_sections_unfolded = [ "Hint" ]
+
+[node name="load list" type="Button" parent="list setup frame" index="5"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 180.0
+margin_top = 329.0
+margin_right = 216.0
+margin_bottom = 359.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+hint_tooltip = "Load a list from a file."
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+icon = ExtResource( 13 )
+flat = false
+align = 1
+_sections_unfolded = [ "Hint" ]
 
 [node name="settings frame" type="ColorRect" parent="." index="3"]
 
@@ -1135,6 +1190,7 @@ align = 0
 
 [node name="new entry frame" type="ColorRect" parent="." index="4"]
 
+editor/display_folded = true
 visible = false
 self_modulate = Color( 1, 1, 1, 0.8 )
 anchor_left = 0.0
@@ -1251,7 +1307,69 @@ flat = false
 align = 1
 _sections_unfolded = [ "Hint" ]
 
-[node name="overlay frame" type="ColorRect" parent="." index="5"]
+[node name="save file dialogue box" type="FileDialog" parent="." index="5"]
+
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = -1.0
+margin_right = 640.0
+margin_bottom = 360.0
+rect_min_size = Vector2( 200, 70 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+popup_exclusive = false
+window_title = "Save a Shuffler list file"
+resizable = false
+dialog_hide_on_ok = false
+mode_overrides_title = false
+mode = 4
+access = 2
+filters = PoolStringArray( ".shuff" )
+show_hidden_files = false
+current_dir = "/home/agameraaron/Documents/"
+current_file = ""
+current_path = "/home/agameraaron/Documents/"
+_sections_unfolded = [ "Dialog", "Popup" ]
+
+[node name="load file dialogue box" type="FileDialog" parent="." index="6"]
+
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = -1.0
+margin_right = 640.0
+margin_bottom = 360.0
+rect_min_size = Vector2( 200, 70 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+popup_exclusive = false
+window_title = "Open a Shuffler list file"
+resizable = false
+dialog_hide_on_ok = false
+mode_overrides_title = false
+mode = 0
+access = 2
+filters = PoolStringArray( ".shuff" )
+show_hidden_files = false
+current_dir = "/home/agameraaron/Documents/"
+current_file = "Documents"
+current_path = "/home/agameraaron/Documents/Documents"
+_sections_unfolded = [ "Dialog", "Popup" ]
+
+[node name="overlay frame" type="ColorRect" parent="." index="7"]
 
 editor/display_folded = true
 visible = false
@@ -1417,7 +1535,7 @@ max_lines_visible = -1
 
 position = Vector2( 286.644, 253.786 )
 scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 12 )
+texture = ExtResource( 14 )
 
 [node name="go back" type="Button" parent="overlay frame/about panel" index="3"]
 
@@ -1460,6 +1578,10 @@ _sections_unfolded = [ "Hint" ]
 
 [connection signal="pressed" from="list setup frame/remove entry" to="." method="_on_remove_entry_pressed"]
 
+[connection signal="pressed" from="list setup frame/save list" to="." method="_on_save_list_pressed"]
+
+[connection signal="pressed" from="list setup frame/load list" to="." method="_on_load_list_pressed"]
+
 [connection signal="pressed" from="settings frame/go back" to="." method="_on_settings_go_back_pressed"]
 
 [connection signal="pressed" from="settings frame/checkbox number" to="." method="_on_checkbox_number_pressed"]
@@ -1471,6 +1593,10 @@ _sections_unfolded = [ "Hint" ]
 [connection signal="pressed" from="new entry frame/confirm button" to="." method="_on_confirm_button_pressed"]
 
 [connection signal="pressed" from="new entry frame/cancel button" to="." method="_on_cancel_button_pressed"]
+
+[connection signal="file_selected" from="save file dialogue box" to="." method="_on_save_file_dialogue_box_file_selected"]
+
+[connection signal="file_selected" from="load file dialogue box" to="." method="_on_load_file_dialogue_box_file_selected"]
 
 [connection signal="pressed" from="overlay frame/setup list warning panel/setup list warning confirm" to="." method="_on_setup_list_warning_confirm_pressed"]
 

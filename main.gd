@@ -1,7 +1,7 @@
 extends Node2D
 
-var version = "0.4"
-var version_name = "Chrono"
+var version = "0.5"
+var version_name = "Memory"
 
 var program_state = "main"
 
@@ -26,15 +26,18 @@ var entries = ["these","are","tests","and","examples"]
 var selection_for_deletion = []
 var last_selected_entry_before_deletion = 0
 
+#save variables
+var save_array = []
+
 
 func _ready():
 	#update the about header with the version
-	get_node("overlay frame/about panel/about header").set_text("How to use:\n1. Access the list setup by pressing the bottom-right most button.\n2. Add items as desired to the list that you want shuffled.\n3. Hold the shuffle button for more power, then let go and it will shuffle the results!\n\nAbout:\nVersion "+version+",  Created by AGamerAaron of \"VAR Team\".\nMIT licensed. Feel free to contribute on Github!")
+	get_node("overlay frame/about panel/about header").set_text("How to use:\n1. Access the list setup by pressing the bottom-right most button.\n2. Add items as desired to the list that you want shuffled.\n3. Hold the shuffle button for more power, then let go and it will shuffle the results!\n\nAbout:\nVersion "+version+", Created by AGamerAaron of \"VAR Team\".\nMIT licensed. Feel free to contribute on Github!")
 	
 	
 
 func _physics_process(delta):
-	#print(program_state)
+	#debuglog(program_state)
 	if program_state == "main":
 		main_frame(delta)
 		
@@ -44,6 +47,9 @@ func _physics_process(delta):
 		if get_node("overlay frame").visible == false and get_node("new entry frame").visible == false:
 			keep_focus_on_list()
 			list_setup_keyboard_shortcuts()
+	elif program_state == "file dialogue":
+		pass #intentionally avoiding keep_focus_on_list if overlay frame is still visible
+		
 	elif program_state == "new entry":
 		new_entry()
 	
@@ -63,13 +69,13 @@ func list_setup_keyboard_shortcuts():
 		if key_delete_held == false:
 			selection_for_deletion = get_node("list setup frame/entry list").get_selected_items()
 			last_selected_entry_before_deletion = selection_for_deletion[0]
-			print("to be deleted from list: "+str(selection_for_deletion))
+			debuglog("to be deleted from list: "+str(selection_for_deletion))
 			var current_deletion = selection_for_deletion.size()-1
 			#Have a confirmation pop-up
 			# IMPORTANT! Work backwards from the bottom because the list shrinks as things are deleted!!
 			while current_deletion >= 0:
 				get_node("list setup frame/entry list").remove_item(selection_for_deletion[current_deletion])
-				print("removed: "+str(selection_for_deletion[current_deletion]))
+				debuglog("removed: "+str(selection_for_deletion[current_deletion]))
 				current_deletion = current_deletion - 1
 				
 			key_delete_held = true
@@ -107,7 +113,7 @@ func new_entry():
 func main_frame(delta):
 	
 	
-	#print(shuffle_state)
+	#debuglog(shuffle_state)
 	
 	if shuffle_state == "initialize":
 		
@@ -130,13 +136,13 @@ func main_frame(delta):
 			get_node("overlay frame/setup list warning panel").show()
 			get_node("overlay frame/setup list warning panel/setup list warning confirm").grab_focus()
 		else:
-			print("Maximum number based on the amount of entries: "+str(max_shuffle_number))
+			debuglog("Maximum number based on the amount of entries: "+str(max_shuffle_number))
 			
 			if hold_time > 100:
 				hold_time = 100
-			print("raw hold time: "+str(hold_time))
+			debuglog("raw hold time: "+str(hold_time))
 			var regulated_hold_time = (hold_time / 10) + 1 #should produce result between 1 & 11
-			print("hold time: "+str(hold_time)+" regulated: "+str(regulated_hold_time))
+			debuglog("hold time: "+str(hold_time)+" regulated: "+str(regulated_hold_time))
 			
 			#find the difference between the max power & hold time
 			var inversed_hold_time = 30 - regulated_hold_time #100 - hold_time
@@ -153,11 +159,11 @@ func main_frame(delta):
 		#reverses direction when maxed and vice versa
 		meter_direction()
 		
-		#print(str(round(next_number)))
+		#debuglog(str(round(next_number)))
 	
 	#Shuffling active loop
 	if shuffle_state == "active":
-		print("accel: "+str(acceleration)+" res: "+str(resistance))
+		debuglog("accel: "+str(acceleration)+" res: "+str(resistance))
 		
 		if acceleration >= 0:
 			shuffle_state = "done"
@@ -178,15 +184,15 @@ func main_frame(delta):
 			#that remainder will be the resulting number
 			next_number = (velocity - (max_shuffle_number-1)) #(velocity - (max_shuffle_number-1))
 			while next_number >= (max_shuffle_number-1):
-				#print("meep: "+str(next_number))
+				#debuglog("meep: "+str(next_number))
 				next_number = next_number - (max_shuffle_number-1)
-			#print("next number: "+str(round(next_number)))
+			#debuglog("next number: "+str(round(next_number)))
 			
 		
 		#display the next number
 		get_node("main frame/number result").set_text(str(round(abs(next_number))))
 		#display the next entry
-		#print(get_node("list setup frame/entry list").get_item_text(int(round(next_number))))
+		#debuglog(get_node("list setup frame/entry list").get_item_text(int(round(next_number))))
 		get_node("main frame/result").set_text(get_node("list setup frame/entry list").get_item_text(int(round(abs(next_number)))) )#(entries[next_number-1])
 		
 		
@@ -209,9 +215,9 @@ func main_frame(delta):
 			#If at full power, change color to red, otherwise keep it green
 			#if get_node("main frame/power meter").value >= 100: #get_node("main frame/power meter").get_value() >= 100:
 				
-				#print(get_node_and_resource("res://main.tscn::5"))
-				#print(get_node_and_resource("main frame/power meter"))
-				#print(ResourceInteractiveLoader.get_resource("res://main.tscn::5"))
+				#debuglog(get_node_and_resource("res://main.tscn::5"))
+				#debuglog(get_node_and_resource("main frame/power meter"))
+				#debuglog(ResourceInteractiveLoader.get_resource("res://main.tscn::5"))
 				#var new_color = Color.new()
 				#new_color = 
 				#get_node("main frame/power meter").add_color_override("max",Color(128,12,52))#.set_bg_color( Color(255,255,0) )  )   )
@@ -226,7 +232,7 @@ func main_frame(delta):
 			#setup_list_warning_active = true
 			#get_node("overlay frame").show()
 			#get_node("overlay frame/setup list warning panel").show()
-			print("Error! No entries!")
+			debuglog("Error! No entries!")
 			
 	
 	
@@ -266,14 +272,14 @@ func update_debug():
 
 
 func _on_shuffle_button_input_event( event ):
-	#print("event: "+str(event))
+	#debuglog("event: "+str(event))
 	if event is InputEventMouseButton:
 		
 		if event.get_button_index() == BUTTON_LEFT:
 			if event.is_pressed():
 				hold_time = 0
 				shuffle_state = "pressed"
-				print("hold time: "+str(hold_time))
+				debuglog("hold time: "+str(hold_time))
 			else: #left button released
 				
 				#execute shuffle
@@ -366,7 +372,7 @@ func _on_checkbox_number_pressed():
 
 func _on_remove_entry_pressed():
 	get_node("list setup frame/entry list").remove_item(get_node("list setup frame/entry list").get_selected_items()[0])
-
+	get_node("list setup frame/entry list").grab_focus()
 
 func _on_about_pressed():
 	get_node("overlay frame").show()
@@ -377,3 +383,65 @@ func _on_about_pressed():
 func _on_go_back_pressed():
 	get_node("overlay frame").hide()
 	get_node("overlay frame/about panel").hide()
+
+
+func _on_save_list_pressed():
+	get_node("save file dialogue box").show()
+	
+	#TO-DO, get keyboard focus on the file dialogue name as it highlights it already
+	#get_node("save file dialogue box").set_focus_mode(2)
+	program_state = "file dialogue"
+	
+	
+
+
+func _on_load_list_pressed():
+	get_node("load file dialogue box").show()
+	#TO-DO, get keyboard focus on the file dialogue name as it highlights it already
+	#get_node("load file dialogue box").grab_focus()
+	program_state = "file dialogue"
+	
+	#var load_file = File.new()
+	#if load_file.file_exists("user://list.shuff"):
+		#load_file.open("user://list.shuff")
+		#load_file.
+
+
+func _on_save_file_dialogue_box_file_selected(file_path):
+	#Workaround because of Godot bug ( https://github.com/godotengine/godot/issues/18534 )
+	file_path.erase(file_path.length()-5,6) #some kind of blank character is in there...?
+	#putting back in suffix
+	file_path = file_path+".shuff"
+	debuglog("saving to: "+file_path)
+	save_array = []
+	for item in get_node("list setup frame/entry list").get_item_count():
+		save_array.append(get_node("list setup frame/entry list").get_item_text(item))
+	#debuglog(save_array)
+	var save_file = File.new()
+	if save_file.file_exists(file_path):
+		save_file.open(file_path,File.WRITE)
+		save_file.store_var(save_array)
+		save_file.close()
+	else: #create it
+		debuglog("New save file.")
+		save_file.open(file_path,File.WRITE)
+		save_file.store_var(save_array)
+		save_file.close()
+	
+
+
+func _on_load_file_dialogue_box_file_selected(path):
+	var load_file = File.new()
+	print("path: "+str(path))
+	if load_file.file_exists(path):
+		load_file.open(path,File.READ)
+		save_array = load_file.get_var()
+		print("save array: "+str(save_array))
+		get_node("list setup frame/entry list").clear()
+		for item in save_array.size():
+			get_node("list setup frame/entry list").add_item(save_array[item])
+			print(save_array[item]+str(" added from save file."))
+		load_file.close()
+
+func debuglog(message):
+	print(message)
