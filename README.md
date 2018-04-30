@@ -1,13 +1,12 @@
 # Shuffler
+Version 0.5, "Memory"
+
 A tool for shuffling around custom answers.
-
 Can be paired with streaming applications like 'OBS'.
-
-Version 0.4
 
 ### Download Application:
 
-|[Linux 64-bit](https://github.com/agameraaron/shuffler/releases/download/v0.4/shuffler_0_4_linux64.7z)|[Linux 32-bit](https://github.com/agameraaron/shuffler/releases/download/v0.4/shuffler_0_4_linux32_0_3.7z)|[Windows 64-bit](https://github.com/agameraaron/shuffler/releases/download/v0.4/shuffler_0_4_windows64_0_3.zip)|[Windows 32-bit](https://github.com/agameraaron/shuffler/releases/download/v0.4/shuffler_0_4_windows32.zip)|[OSX](https://github.com/agameraaron/shuffler/releases/download/v0.4/shuffler_0_4_mac.zip)|
+|[Linux 64-bit](https://github.com/agameraaron/shuffler/releases/download/v0.5/shuffler_0_5_linux64.7z)|[Linux 32-bit](https://github.com/agameraaron/shuffler/releases/download/v0.5/shuffler_0_5_linux32_0_3.7z)|[Windows 64-bit](https://github.com/agameraaron/shuffler/releases/download/v0.5/shuffler_0_5_windows64_0_3.zip)|[Windows 32-bit](https://github.com/agameraaron/shuffler/releases/download/v0.5/shuffler_0_5_windows32.zip)|[OSX](https://github.com/agameraaron/shuffler/releases/download/v0.5/shuffler_0_5_osx.zip)|
 |:---:|:---:|:---:|:---:|:---:|
 
 ### Preview:
@@ -25,9 +24,10 @@ Much like how one could determine an answer by shuffling cards, throwing dice, s
 
 ### Features:
 - Preferable to a coin toss.
+- Custom lists.
 - Holding the power button determines the shuffling time.
-- Custom choice names.
-- Background color can be changed.
+- Saving & loading of lists.
+- Background color can be changed. Useful for chroma keying.
 
 ### To Do:
 
