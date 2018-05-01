@@ -32,10 +32,13 @@ Much like how one could determine an answer by shuffling cards, throwing dice, s
 ### To Do:
 
 ##### High priority:
+- Fullscreen name entry screen.
+- Sort up/down options
+- Edit entry option
 - Instead of reversing direction, the cycle should start again from the beginning of the list.
 
 ##### Low priority:
-- Fullscreen name entry screen.
+- Textures mode
 
 ### History:
 I wanted something to make decisions for me during streaming sessions. This is what I came up with. It works something like a digital roulette wheel including initial spin power and deceleration over time. Maybe a graphic representation of a wheel can be implemented in the future.
