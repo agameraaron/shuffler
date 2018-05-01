@@ -1,12 +1,12 @@
 # Shuffler
-Version 0.5, "Memory"
+Version 0.5.1, "Memory"
 
 A tool for shuffling around custom answers.
 Can be paired with streaming applications like 'OBS'.
 
 ### Download Application:
 
-|[Linux 64-bit](https://github.com/agameraaron/shuffler/releases/download/v0.5/shuffler_0_5_linux64.7z)|[Linux 32-bit](https://github.com/agameraaron/shuffler/releases/download/v0.5/shuffler_0_5_linux32_0_3.7z)|[Windows 64-bit](https://github.com/agameraaron/shuffler/releases/download/v0.5/shuffler_0_5_windows64_0_3.zip)|[Windows 32-bit](https://github.com/agameraaron/shuffler/releases/download/v0.5/shuffler_0_5_windows32.zip)|[OSX](https://github.com/agameraaron/shuffler/releases/download/v0.5/shuffler_0_5_osx.zip)|
+|[Linux 64-bit](https://github.com/agameraaron/shuffler/releases/download/v0.5/shuffler_0_5_1_linux64.7z)|[Linux 32-bit](https://github.com/agameraaron/shuffler/releases/download/v0.5/shuffler_0_5_1_linux32.7z)|[Windows 64-bit](https://github.com/agameraaron/shuffler/releases/download/v0.5/shuffler_0_5_1_windows64.zip)|[Windows 32-bit](https://github.com/agameraaron/shuffler/releases/download/v0.5/shuffler_0_5_1_windows32.zip)|[OSX](https://github.com/agameraaron/shuffler/releases/download/v0.5/shuffler_0_5_1_osx.zip)|
 |:---:|:---:|:---:|:---:|:---:|
 
 ### Preview:
