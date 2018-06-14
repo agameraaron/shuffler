@@ -6,7 +6,7 @@ Can be paired with streaming applications like 'OBS'.
 
 ### Download Application:
 
-|[Linux 64-bit](https://github.com/agameraaron/shuffler/releases/download/v0.5/shuffler_0_5_1_linux64.7z)|[Linux 32-bit](https://github.com/agameraaron/shuffler/releases/download/v0.5/shuffler_0_5_1_linux32.7z)|[Windows 64-bit](https://github.com/agameraaron/shuffler/releases/download/v0.5/shuffler_0_5_1_windows64.zip)|[Windows 32-bit](https://github.com/agameraaron/shuffler/releases/download/v0.5/shuffler_0_5_1_windows32.zip)|[OSX](https://github.com/agameraaron/shuffler/releases/download/v0.5/shuffler_0_5_1_osx.zip)|
+|[Linux 64-bit](https://github.com/agameraaron/shuffler/releases/download/v0.5.1/shuffler_0_5_1_linux64.7z)|[Linux 32-bit](https://github.com/agameraaron/shuffler/releases/download/v0.5.1/shuffler_0_5_1_linux32.7z)|[Windows 64-bit](https://github.com/agameraaron/shuffler/releases/download/v0.5.1/shuffler_0_5_1_windows64.zip)|[Windows 32-bit](https://github.com/agameraaron/shuffler/releases/download/v0.5.1/shuffler_0_5_1_windows32.zip)|[OSX](https://github.com/agameraaron/shuffler/releases/download/v0.5.1/shuffler_0_5_1_osx.zip)|
 |:---:|:---:|:---:|:---:|:---:|
 
 ### Preview:
