@@ -32,13 +32,19 @@ Much like how one could determine an answer by shuffling cards, throwing dice, s
 ### To Do:
 
 ##### High priority:
-- Fullscreen name entry screen.
+- Removes only top entry, not selected as intended
+- Load prompt does not show files under specified suffix
+- New Button graphics for sorts and renaming
+- Wider name entry screen to accomodate more buttons
 - Sort up/down options
-- Edit entry option
+- Rename entry option (button and by double clicking)
 - Instead of reversing direction, the cycle should start again from the beginning of the list.
 
 ##### Low priority:
-- Textures mode
+- Save and load prompts should be unmovable
+
+##### Wish list:
+- Allow textures to represent each entry
 
 ### History:
 I wanted something to make decisions for me during streaming sessions. This is what I came up with. It works something like a digital roulette wheel including initial spin power and deceleration over time. Maybe a graphic representation of a wheel can be implemented in the future.
