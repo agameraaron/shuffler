@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://assets/Chunkfive.otf" type="DynamicFontData" id=2]
@@ -9,11 +9,14 @@
 [ext_resource path="res://assets/settings.png" type="Texture" id=7]
 [ext_resource path="res://assets/list options.png" type="Texture" id=8]
 [ext_resource path="res://assets/go back.png" type="Texture" id=9]
-[ext_resource path="res://assets/add.png" type="Texture" id=10]
-[ext_resource path="res://assets/remove.png" type="Texture" id=11]
-[ext_resource path="res://assets/save.png" type="Texture" id=12]
-[ext_resource path="res://assets/load.png" type="Texture" id=13]
-[ext_resource path="res://assets/about_godot.png" type="Texture" id=14]
+[ext_resource path="res://assets/rename.png" type="Texture" id=10]
+[ext_resource path="res://assets/sort up.png" type="Texture" id=11]
+[ext_resource path="res://assets/sort down.png" type="Texture" id=12]
+[ext_resource path="res://assets/add.png" type="Texture" id=13]
+[ext_resource path="res://assets/remove.png" type="Texture" id=14]
+[ext_resource path="res://assets/save.png" type="Texture" id=15]
+[ext_resource path="res://assets/load.png" type="Texture" id=16]
+[ext_resource path="res://assets/about_godot.png" type="Texture" id=17]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -788,7 +791,7 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 423.0
+margin_left = 411.0
 margin_right = 640.0
 margin_bottom = 360.0
 rect_pivot_offset = Vector2( 0, 0 )
@@ -798,16 +801,40 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="go back" type="Button" parent="list setup frame" index="0"]
+[node name="entry list" type="ItemList" parent="list setup frame" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 2.0
+margin_right = 229.0
+margin_bottom = 297.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+items = [  ]
+select_mode = 0
+allow_reselect = false
+icon_mode = 1
+fixed_icon_size = Vector2( 0, 0 )
+
+[node name="go back" type="Button" parent="list setup frame" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 1.0
 margin_top = 329.0
-margin_right = 38.0
+margin_right = 37.0
 margin_bottom = 359.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -825,20 +852,23 @@ icon = ExtResource( 9 )
 flat = false
 align = 1
 _sections_unfolded = [ "Hint" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="add entry" type="Button" parent="list setup frame" index="1"]
+[node name="rename" type="Button" parent="list setup frame" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 55.0
-margin_top = 329.0
-margin_right = 91.0
-margin_bottom = 359.0
+margin_left = 63.0
+margin_top = 313.0
+margin_right = 99.0
+margin_bottom = 343.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
-hint_tooltip = "Add a new entry to the list."
+hint_tooltip = "Rename selected item."
 focus_mode = 2
 mouse_filter = 0
 mouse_default_cursor_shape = 0
@@ -852,20 +882,23 @@ icon = ExtResource( 10 )
 flat = false
 align = 1
 _sections_unfolded = [ "Hint" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="remove entry" type="Button" parent="list setup frame" index="2"]
+[node name="sort up" type="Button" parent="list setup frame" index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 92.0
-margin_top = 329.0
-margin_right = 128.0
-margin_bottom = 359.0
+margin_left = 137.0
+margin_top = 298.0
+margin_right = 173.0
+margin_bottom = 328.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
-hint_tooltip = "Removes selected entry"
+hint_tooltip = "Ascend selected item."
 focus_mode = 2
 mouse_filter = 0
 mouse_default_cursor_shape = 0
@@ -879,41 +912,23 @@ icon = ExtResource( 11 )
 flat = false
 align = 1
 _sections_unfolded = [ "Hint" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="entry list" type="ItemList" parent="list setup frame" index="3"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 217.0
-margin_bottom = 328.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = true
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-items = [  ]
-select_mode = 0
-allow_reselect = false
-icon_mode = 1
-fixed_icon_size = Vector2( 0, 0 )
-
-[node name="save list" type="Button" parent="list setup frame" index="4"]
+[node name="sort down" type="Button" parent="list setup frame" index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 143.0
+margin_left = 137.0
 margin_top = 329.0
-margin_right = 179.0
+margin_right = 173.0
 margin_bottom = 359.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
-hint_tooltip = "Save list to a file."
+hint_tooltip = "Descend selected item."
 focus_mode = 2
 mouse_filter = 0
 mouse_default_cursor_shape = 0
@@ -927,20 +942,23 @@ icon = ExtResource( 12 )
 flat = false
 align = 1
 _sections_unfolded = [ "Hint" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="load list" type="Button" parent="list setup frame" index="5"]
+[node name="add entry" type="Button" parent="list setup frame" index="5"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 180.0
-margin_top = 329.0
-margin_right = 216.0
-margin_bottom = 359.0
+margin_left = 100.0
+margin_top = 298.0
+margin_right = 136.0
+margin_bottom = 328.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
-hint_tooltip = "Load a list from a file."
+hint_tooltip = "Add a new entry to the list."
 focus_mode = 2
 mouse_filter = 0
 mouse_default_cursor_shape = 0
@@ -954,6 +972,99 @@ icon = ExtResource( 13 )
 flat = false
 align = 1
 _sections_unfolded = [ "Hint" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="remove entry" type="Button" parent="list setup frame" index="6"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 100.0
+margin_top = 329.0
+margin_right = 136.0
+margin_bottom = 359.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+hint_tooltip = "Removes selected entry"
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+icon = ExtResource( 14 )
+flat = false
+align = 1
+_sections_unfolded = [ "Hint" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="save list" type="Button" parent="list setup frame" index="7"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 193.0
+margin_top = 299.0
+margin_right = 229.0
+margin_bottom = 329.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+hint_tooltip = "Save list to a file."
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+icon = ExtResource( 15 )
+flat = false
+align = 1
+_sections_unfolded = [ "Hint" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="load list" type="Button" parent="list setup frame" index="8"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 193.0
+margin_top = 329.0
+margin_right = 229.0
+margin_bottom = 359.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+hint_tooltip = "Load a list from a file."
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+icon = ExtResource( 16 )
+flat = false
+align = 1
+_sections_unfolded = [ "Hint" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="settings frame" type="ColorRect" parent="." index="3"]
 
@@ -1197,7 +1308,7 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 508.0
+margin_left = 410.0
 margin_right = 640.0
 margin_bottom = 360.0
 rect_pivot_offset = Vector2( 0, 0 )
@@ -1216,7 +1327,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 33.0
 margin_top = 114.0
-margin_right = 102.0
+margin_right = 197.0
 margin_bottom = 128.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -1225,6 +1336,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 0
 text = "Add entry:"
+align = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -1237,7 +1349,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 4.0
 margin_top = 131.0
-margin_right = 132.0
+margin_right = 225.0
 margin_bottom = 155.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -1259,9 +1371,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 84.0
+margin_left = 179.0
 margin_top = 166.0
-margin_right = 129.0
+margin_right = 224.0
 margin_bottom = 189.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -1307,7 +1419,127 @@ flat = false
 align = 1
 _sections_unfolded = [ "Hint" ]
 
-[node name="save file dialogue box" type="FileDialog" parent="." index="5"]
+[node name="rename entry frame" type="ColorRect" parent="." index="5"]
+
+editor/display_folded = true
+visible = false
+self_modulate = Color( 1, 1, 1, 0.8 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 411.0
+margin_right = 640.0
+margin_bottom = 360.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0, 0, 0, 1 )
+
+[node name="rename entry label" type="Label" parent="rename entry frame" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 3.0
+margin_top = 114.0
+margin_right = 226.0
+margin_bottom = 128.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 0
+text = "Rename entry:"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="rename entry input" type="LineEdit" parent="rename entry frame" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 4.0
+margin_top = 131.0
+margin_right = 224.0
+margin_bottom = 155.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 1
+size_flags_horizontal = 1
+size_flags_vertical = 1
+focus_mode = 2
+context_menu_enabled = true
+placeholder_alpha = 0.6
+caret_blink = false
+caret_blink_speed = 0.65
+caret_position = 0
+
+[node name="confirm button" type="Button" parent="rename entry frame" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 177.0
+margin_top = 166.0
+margin_right = 222.0
+margin_bottom = 189.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+hint_tooltip = "Confirm that the name entered is correct"
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Yes"
+flat = false
+align = 1
+_sections_unfolded = [ "Hint" ]
+
+[node name="cancel button" type="Button" parent="rename entry frame" index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 8.0
+margin_top = 166.0
+margin_right = 53.0
+margin_bottom = 189.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+hint_tooltip = "Cancels entry screen"
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "No"
+flat = false
+align = 1
+_sections_unfolded = [ "Hint" ]
+
+[node name="save file dialogue box" type="FileDialog" parent="." index="6"]
 
 visible = false
 anchor_left = 0.0
@@ -1331,14 +1563,14 @@ dialog_hide_on_ok = false
 mode_overrides_title = false
 mode = 4
 access = 2
-filters = PoolStringArray( ".shuff" )
+filters = PoolStringArray( "*.shuff" )
 show_hidden_files = false
-current_dir = "/home/agameraaron/Documents/"
+current_dir = "/home/agameraaron/Documents"
 current_file = ""
 current_path = "/home/agameraaron/Documents/"
 _sections_unfolded = [ "Dialog", "Popup" ]
 
-[node name="load file dialogue box" type="FileDialog" parent="." index="6"]
+[node name="load file dialogue box" type="FileDialog" parent="." index="7"]
 
 visible = false
 anchor_left = 0.0
@@ -1362,14 +1594,14 @@ dialog_hide_on_ok = false
 mode_overrides_title = false
 mode = 0
 access = 2
-filters = PoolStringArray( ".shuff" )
+filters = PoolStringArray( "*.shuff" )
 show_hidden_files = false
-current_dir = "/home/agameraaron/Documents/"
+current_dir = "/home/agameraaron/Documents"
 current_file = "Documents"
 current_path = "/home/agameraaron/Documents/Documents"
 _sections_unfolded = [ "Dialog", "Popup" ]
 
-[node name="overlay frame" type="ColorRect" parent="." index="7"]
+[node name="overlay frame" type="ColorRect" parent="." index="8"]
 
 editor/display_folded = true
 visible = false
@@ -1535,7 +1767,7 @@ max_lines_visible = -1
 
 position = Vector2( 286.644, 253.786 )
 scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 14 )
+texture = ExtResource( 17 )
 
 [node name="go back" type="Button" parent="overlay frame/about panel" index="3"]
 
@@ -1572,7 +1804,15 @@ _sections_unfolded = [ "Hint" ]
 
 [connection signal="pressed" from="main frame/list" to="." method="_on_list_setup_pressed"]
 
+[connection signal="item_activated" from="list setup frame/entry list" to="." method="_on_entry_list_item_activated"]
+
 [connection signal="pressed" from="list setup frame/go back" to="." method="_on_list_setup_go_back_pressed"]
+
+[connection signal="pressed" from="list setup frame/rename" to="." method="_on_rename_pressed"]
+
+[connection signal="pressed" from="list setup frame/sort up" to="." method="_on_sort_up_pressed"]
+
+[connection signal="pressed" from="list setup frame/sort down" to="." method="_on_sort_down_pressed"]
 
 [connection signal="pressed" from="list setup frame/add entry" to="." method="_on_add_entry_pressed"]
 
@@ -1590,9 +1830,13 @@ _sections_unfolded = [ "Hint" ]
 
 [connection signal="pressed" from="settings frame/checkbox crop" to="." method="_on_checkbox_crop_pressed"]
 
-[connection signal="pressed" from="new entry frame/confirm button" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="new entry frame/confirm button" to="." method="_on_add_entry_confirm_button_pressed"]
 
-[connection signal="pressed" from="new entry frame/cancel button" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="new entry frame/cancel button" to="." method="_on_add_entry_cancel_button_pressed"]
+
+[connection signal="pressed" from="rename entry frame/confirm button" to="." method="_on_rename_entry_confirm_button_pressed"]
+
+[connection signal="pressed" from="rename entry frame/cancel button" to="." method="_on_rename_entry_cancel_button_pressed"]
 
 [connection signal="file_selected" from="save file dialogue box" to="." method="_on_save_file_dialogue_box_file_selected"]
 

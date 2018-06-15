@@ -23,8 +23,13 @@ var key_enter_held = false
 var key_delete_held = false
 
 var entries = ["these","are","tests","and","examples"]
+var selected_entry_number = 0 #for use with renaming and sorting
+var selected_entry = ""
 var selection_for_deletion = []
 var last_selected_entry_before_deletion = 0
+var desired_entry_number = 0
+var sorting_entry = 0
+var entry_list_array_for_sort = []
 
 #save variables
 var save_array = []
@@ -36,7 +41,7 @@ func _ready():
 	
 	
 
-func _physics_process(delta):
+func _process(delta):
 	#debuglog(program_state)
 	if program_state == "main":
 		main_frame(delta)
@@ -53,6 +58,9 @@ func _physics_process(delta):
 	elif program_state == "new entry":
 		new_entry()
 	
+	elif program_state == "rename entry":
+		rename_entry()
+	
 	
 
 
@@ -68,19 +76,20 @@ func list_setup_keyboard_shortcuts():
 	if Input.is_key_pressed(KEY_DELETE) or Input.is_key_pressed(KEY_BACKSPACE) or Input.is_key_pressed(KEY_MINUS):
 		if key_delete_held == false:
 			selection_for_deletion = get_node("list setup frame/entry list").get_selected_items()
-			last_selected_entry_before_deletion = selection_for_deletion[0]
-			debuglog("to be deleted from list: "+str(selection_for_deletion))
-			var current_deletion = selection_for_deletion.size()-1
-			#Have a confirmation pop-up
-			# IMPORTANT! Work backwards from the bottom because the list shrinks as things are deleted!!
-			while current_deletion >= 0:
-				get_node("list setup frame/entry list").remove_item(selection_for_deletion[current_deletion])
-				debuglog("removed: "+str(selection_for_deletion[current_deletion]))
-				current_deletion = current_deletion - 1
-				
-			key_delete_held = true
-			get_node("list setup frame/entry list").grab_focus()
-			get_node("list setup frame/entry list").select(last_selected_entry_before_deletion)
+			if selection_for_deletion.size() > 0:
+				last_selected_entry_before_deletion = selection_for_deletion[0]
+				debuglog("to be deleted from list: "+str(selection_for_deletion))
+				var current_deletion = selection_for_deletion.size()-1
+				#Have a confirmation pop-up
+				# IMPORTANT! Work backwards from the bottom because the list shrinks as things are deleted!!
+				while current_deletion >= 0:
+					get_node("list setup frame/entry list").remove_item(selection_for_deletion[current_deletion])
+					debuglog("removed: "+str(selection_for_deletion[current_deletion]))
+					current_deletion = current_deletion - 1
+					
+				key_delete_held = true
+				get_node("list setup frame/entry list").grab_focus()
+				get_node("list setup frame/entry list").select(last_selected_entry_before_deletion)
 	else:
 		key_delete_held = false
 		
@@ -90,7 +99,8 @@ func keep_focus_on_list():
 	if get_node("list setup frame/entry list").has_focus() == false:
 		get_node("list setup frame/entry list").grab_focus()
 		
-		if get_node("list setup frame/entry list").is_selected(0) == false:
+		#if get_node("list setup frame/entry list").is_selected(0) == false:
+		if get_node("list setup frame/entry list").get_selected_items().size() == 0:
 			get_node("list setup frame/entry list").select(0)
 	#has focus but after deletion does not highlight anything
 
@@ -102,13 +112,24 @@ func new_entry():
 		key_enter_held = false
 	elif get_node("new entry frame/new entry input").has_focus() and (Input.is_key_pressed(KEY_ENTER) or Input.is_key_pressed(KEY_KP_ENTER)) and key_enter_held == false and get_node("new entry frame/new entry input").text != "":
 		key_enter_held = true
-		_on_confirm_button_pressed()
+		_on_add_entry_confirm_button_pressed()
 		
 		get_node("list setup frame/entry list").grab_focus()
 		get_node("list setup frame/entry list").select(get_node("list setup frame/entry list").get_item_count()-1)
 		
 		
 		
+
+func rename_entry():
+	if Input.is_key_pressed(KEY_ENTER) == false and Input.is_key_pressed(KEY_KP_ENTER) == false:
+		key_enter_held = false
+	elif get_node("rename entry frame/rename entry input").has_focus() and (Input.is_key_pressed(KEY_ENTER) or Input.is_key_pressed(KEY_KP_ENTER)) and key_enter_held == false and get_node("rename entry frame/rename entry input").text != "":
+		key_enter_held = true
+		_on_rename_entry_confirm_button_pressed()
+		
+		get_node("list setup frame/entry list").grab_focus()
+		get_node("list setup frame/entry list").select(selected_entry_number)#get_node("list setup frame/entry list").get_item_count()-1)
+	
 
 func main_frame(delta):
 	
@@ -324,18 +345,30 @@ func _on_add_entry_pressed():
 
 
 
-func _on_confirm_button_pressed():
+func _on_add_entry_confirm_button_pressed():
 	get_node("list setup frame/entry list").add_item(get_node("new entry frame/new entry input").get_text())
 	get_node("new entry frame/new entry input").clear()
 	get_node("new entry frame").hide()
 	program_state = "list setup"
 
 
-func _on_cancel_button_pressed():
+func _on_add_entry_cancel_button_pressed():
 	get_node("new entry frame/new entry input").clear()
 	get_node("new entry frame").hide()
 	program_state = "list setup"
 
+
+func _on_rename_entry_confirm_button_pressed():
+	get_node("list setup frame/entry list").set_item_text(selected_entry_number,get_node("rename entry frame/rename entry input").get_text())
+	get_node("rename entry frame/rename entry input").clear()
+	get_node("rename entry frame").hide()
+	program_state = "list setup"
+
+
+func _on_rename_entry_cancel_button_pressed():
+	get_node("rename entry frame/rename entry input").clear()
+	get_node("rename entry frame").hide()
+	program_state = "list setup"
 
 func _on_setup_list_warning_confirm_pressed():
 	get_node("overlay frame").hide()
@@ -371,8 +404,11 @@ func _on_checkbox_number_pressed():
 
 
 func _on_remove_entry_pressed():
-	get_node("list setup frame/entry list").remove_item(get_node("list setup frame/entry list").get_selected_items()[0])
-	get_node("list setup frame/entry list").grab_focus()
+	var item_to_remove = get_node("list setup frame/entry list").get_selected_items()
+	item_to_remove = item_to_remove[0] #remove only first entry for now
+	print("Item removal number: "+str(item_to_remove))
+	get_node("list setup frame/entry list").remove_item(item_to_remove)
+	#get_node("list setup frame/entry list").grab_focus()
 
 func _on_about_pressed():
 	get_node("overlay frame").show()
@@ -396,6 +432,7 @@ func _on_save_list_pressed():
 
 
 func _on_load_list_pressed():
+	get_node("load file dialogue box").update()
 	get_node("load file dialogue box").show()
 	#TO-DO, get keyboard focus on the file dialogue name as it highlights it already
 	#get_node("load file dialogue box").grab_focus()
@@ -409,9 +446,9 @@ func _on_load_list_pressed():
 
 func _on_save_file_dialogue_box_file_selected(file_path):
 	#Workaround because of Godot bug ( https://github.com/godotengine/godot/issues/18534 )
-	file_path.erase(file_path.length()-5,6) #some kind of blank character is in there...?
+	#file_path.erase(file_path.length()-5,6) #some kind of blank character is in there...?
 	#putting back in suffix
-	file_path = file_path+".shuff"
+	#file_path = file_path+".shuff"
 	debuglog("saving to: "+file_path)
 	save_array = []
 	for item in get_node("list setup frame/entry list").get_item_count():
@@ -427,21 +464,87 @@ func _on_save_file_dialogue_box_file_selected(file_path):
 		save_file.open(file_path,File.WRITE)
 		save_file.store_var(save_array)
 		save_file.close()
+	program_state = "list setup"
 	
 
 
 func _on_load_file_dialogue_box_file_selected(path):
 	var load_file = File.new()
-	print("path: "+str(path))
+	debuglog("Load path: "+str(path))
 	if load_file.file_exists(path):
 		load_file.open(path,File.READ)
 		save_array = load_file.get_var()
-		print("save array: "+str(save_array))
+		debuglog("save array: "+str(save_array))
 		get_node("list setup frame/entry list").clear()
 		for item in save_array.size():
 			get_node("list setup frame/entry list").add_item(save_array[item])
-			print(save_array[item]+str(" added from save file."))
+			debuglog(save_array[item]+str(" added from save file."))
 		load_file.close()
+	program_state = "list setup"
 
 func debuglog(message):
 	print(message)
+
+func _on_rename_pressed():
+	selected_entry_number = get_node("list setup frame/entry list").get_selected_items()[0]
+	get_node("rename entry frame").show()
+	get_node("rename entry frame/rename entry input").grab_focus()
+	program_state = "rename entry"
+
+
+func _on_sort_up_pressed():
+	selected_entry_number = get_node("list setup frame/entry list").get_selected_items()[0]
+	desired_entry_number = selected_entry_number-1
+	selected_entry = get_node("list setup frame/entry list").get_item_text(selected_entry_number)
+	#print("selected entry number: "+str(selected_entry_number))
+	
+	if desired_entry_number >= 0:
+		#if ItemList had any kind of functionality to sort it's entries, this wouldn't exist
+		rebuild_entire_list_to_sort_one_flipping_thing()
+	
+	#get_node("list setup frame/entry list").remove_item(selected_entry_number)
+	#get_node("list setup frame/entry list").add_item(selected_entry)
+	#It will now place it in the end (despite what I want!) so now we are going to put it where it needs be
+	#selected_entry_number = get_node("list setup frame/entry list").get_item_at_position(Vector2(0,get_node("list setup frame/entry list").get_item_count()))
+	#selected_entry = get_node("list setup frame/entry list").get_item_text(selected_entry_number)
+	#print("this the right one?: "+str(selected_entry)) #yes, it is
+	
+	#now put it in it's desired number... somehow
+	get_node("list setup frame/entry list").select(desired_entry_number)
+	
+
+
+func _on_sort_down_pressed():
+	selected_entry_number = get_node("list setup frame/entry list").get_selected_items()[0]
+	desired_entry_number = selected_entry_number+1
+	selected_entry = get_node("list setup frame/entry list").get_item_text(selected_entry_number)
+	#print("selected entry number: "+str(selected_entry_number))
+	
+	if desired_entry_number < get_node("list setup frame/entry list").get_item_count():
+		#if ItemList had any kind of functionality to sort it's entries, this wouldn't exist
+		rebuild_entire_list_to_sort_one_flipping_thing()
+	
+	get_node("list setup frame/entry list").select(desired_entry_number)
+
+
+#Puts the whole ItemList into an array, resorts one entry then outputs it back into the ItemList
+func rebuild_entire_list_to_sort_one_flipping_thing():
+	get_node("list setup frame/entry list").remove_item(selected_entry_number)
+	for rebuild_entry in range(0,get_node("list setup frame/entry list").get_item_count()):
+		sorting_entry = get_node("list setup frame/entry list").get_item_text(rebuild_entry)
+		entry_list_array_for_sort.append(sorting_entry)#insert(entry,sorting_entry_text)
+	entry_list_array_for_sort.insert(desired_entry_number,selected_entry)
+	print(entry_list_array_for_sort)
+	#output result back into entry list
+	get_node("list setup frame/entry list").clear()
+	print(get_node("list setup frame/entry list").items)
+	for replace_entries in range(0,entry_list_array_for_sort.size()):
+		get_node("list setup frame/entry list").add_item(entry_list_array_for_sort[replace_entries])
+	
+	#reset
+	entry_list_array_for_sort.clear()
+	
+
+
+func _on_entry_list_item_activated(index):
+	_on_rename_pressed()
