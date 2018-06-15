@@ -1,12 +1,12 @@
 # Shuffler
-Version 0.5.1, "Memory"
+Version 0.6 alpha, "Acceptable"
 
 A tool for shuffling around custom answers.
 Can be paired with streaming applications like 'OBS'.
 
 ### Download Application:
 
-|[Linux 64-bit](https://github.com/agameraaron/shuffler/releases/download/v0.5.1/shuffler_0_5_1_linux64.7z)|[Linux 32-bit](https://github.com/agameraaron/shuffler/releases/download/v0.5.1/shuffler_0_5_1_linux32.7z)|[Windows 64-bit](https://github.com/agameraaron/shuffler/releases/download/v0.5.1/shuffler_0_5_1_windows64.zip)|[Windows 32-bit](https://github.com/agameraaron/shuffler/releases/download/v0.5.1/shuffler_0_5_1_windows32.zip)|[OSX](https://github.com/agameraaron/shuffler/releases/download/v0.5.1/shuffler_0_5_1_osx.zip)|
+|[Linux 64-bit](https://github.com/agameraaron/shuffler/releases/download/v0.6a/shuffler_0_6a_linux64.7z)|[Windows 64-bit](https://github.com/agameraaron/shuffler/releases/download/v0.6a/shuffler_0_6a_windows64.zip)|[OSX](https://github.com/agameraaron/shuffler/releases/download/v0.6a/shuffler_0_6a_osx.zip)|[Linux 32-bit](https://github.com/agameraaron/shuffler/releases/download/v0.6a/shuffler_0_6a_linux32.7z)|[Windows 32-bit](https://github.com/agameraaron/shuffler/releases/download/v0.6a/shuffler_0_6a_windows32.zip)|
 |:---:|:---:|:---:|:---:|:---:|
 
 ### Preview:
@@ -27,21 +27,17 @@ Much like how one could determine an answer by shuffling cards, throwing dice, s
 - Custom lists.
 - Holding the power button determines the shuffling time.
 - Saving & loading of lists.
+- Sorting and renaming options available.
 - Background color can be changed. Useful for chroma keying.
 
 ### To Do:
 
 ##### High priority:
-- Removes only top entry, not selected as intended
-- Load prompt does not show files under specified suffix
-- New Button graphics for sorts and renaming
-- Wider name entry screen to accomodate more buttons
-- Sort up/down options
-- Rename entry option (button and by double clicking)
 - Instead of reversing direction, the cycle should start again from the beginning of the list.
 
 ##### Low priority:
 - Save and load prompts should be unmovable
+- Remove multiple entries from the list at once.
 
 ##### Wish list:
 - Allow textures to represent each entry
